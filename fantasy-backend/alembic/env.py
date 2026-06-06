@@ -5,9 +5,19 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from app.config import settings
+import sys
+import os
+
+# Get the path to your project root (where 'app' lives)
+# This uses the current file's location to find the root
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
+
+from app.core.config import settings
 from app.models import User,Team,Player,TeamPlayer
-from app.database import Base
+from app.core.database import Base
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
